@@ -1,0 +1,29 @@
+{
+  "encoder": {
+    "total": 59298192,
+    "stages": {
+      "input_layer": 896,
+      "blocks": 30757376,
+      "middle_block": 28317696,
+      "out_layer": 222224
+    }
+  },
+  "decoder": {
+    "total": 73671201,
+    "stages": {
+      "input_layer": 111104,
+      "middle_block": 28317696,
+      "blocks": 45241472,
+      "out_layer": 929
+    }
+  },
+  "denoiser": {
+    "total": 555543560,
+    "stages": {
+      "t_embedder": 1312768,
+      "input_layer": 9216,
+      "blocks": 554213376,
+      "out_layer": 8200
+    }
+  }
+}

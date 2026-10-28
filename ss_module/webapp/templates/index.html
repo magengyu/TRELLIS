@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TRELLIS · 占据网格工作台</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/plotly.js" defer></script><script src="/static/app.js" defer></script>
+</head>
+<body>
+<header><a class="brand" href="/">T<span>◆</span> TRELLIS <small>SPARSE STRUCTURE</small></a><span class="local"><i></i> 本地 GPU 工作台</span></header>
+<main>
+  <div class="intro"><p class="eyebrow">IMAGE → OCCUPANCY</p><h1>从照片，探索物体的空间结构。</h1><p>上传一个或多个视角，生成 64³ 占据网格，在三维空间中查看每一个体素。</p></div>
+  <div class="workspace">
+    <section class="panel controls">
+      <div class="section-title"><span>01 / 输入图片</span><span id="image-count">0 张</span></div>
+      <label class="upload" id="dropzone" for="images"><b class="upload-icon">＋</b><strong>点击选择或拖入图片</strong><span>支持单图 / 多视角 · 最多 12 张 · 共 32 MB</span><input id="images" type="file" accept="image/*" multiple></label>
+      <div id="thumbnails" class="thumbnails"></div>
+      <div class="input-note">多张图片请使用同一物体的不同视角，共同生成一个网格。</div>
+      <div class="section-title settings-title"><span>02 / 生成设置</span><button id="clear" class="text-button" type="button">清空图片</button></div>
+      <div class="settings">
+        <label>采样步数<input id="steps" type="number" min="1" max="100" value="12"></label>
+        <label>随机种子<input id="seed" type="number" min="0" max="4294967295" value="1"></label>
+        <label>引导强度<input id="cfg" type="number" min="0" max="30" step="0.5" value="7.5"></label>
+        <label>多图融合<select id="mode"><option value="stochastic">轮流引导</option><option value="multidiffusion">逐步平均</option></select></label>
+      </div>
+      <button id="generate" class="primary" type="button">生成占据网格 <span>↗</span></button>
+      <div id="status" role="status" aria-live="polite">准备就绪。请选择图片开始生成。</div>
+    </section>
+    <section class="panel preview">
+      <div class="viewer-header"><div><span class="eyebrow">03 / 3D VIEWPORT</span><h2>占据网格</h2></div><span class="resolution">64 × 64 × 64</span></div>
+      <div class="viewer-body"><div id="plot" aria-label="可交互的三维占据网格"></div><div id="empty"><div class="cube">◇</div><h3>等待构建空间</h3><p>生成后，体素模型将在这里显示</p></div></div>
+      <div class="viewer-footer"><span id="stats">拖动旋转 · 滚轮缩放 · 右键平移</span><div><label class="wire"><input id="points" type="checkbox" checked> 中心点</label><label class="wire"><input id="edges" type="checkbox" checked> 边线</label><button id="reset" class="secondary" type="button">重置视角</button><a id="download" class="secondary disabled" aria-disabled="true">下载 NPZ ↓</a></div></div>
+    </section>
+  </div>
+  <footer>SPARSE STRUCTURE EXPLORER <span>只生成空间占据结构 · 不运行后续几何与外观生成</span></footer>
+</main>
+</body></html>

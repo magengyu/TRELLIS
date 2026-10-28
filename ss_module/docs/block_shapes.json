@@ -1,0 +1,438 @@
+{
+  "encoder": [
+    {
+      "name": "input_layer",
+      "block": "Conv3d",
+      "input": [
+        2,
+        1,
+        64,
+        64,
+        64
+      ],
+      "output": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "blocks.0",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ],
+      "output": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "blocks.1",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ],
+      "output": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "blocks.2",
+      "block": "DownsampleBlock3d",
+      "input": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ],
+      "output": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ]
+    },
+    {
+      "name": "blocks.3",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ],
+      "output": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ]
+    },
+    {
+      "name": "blocks.4",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ],
+      "output": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ]
+    },
+    {
+      "name": "blocks.5",
+      "block": "DownsampleBlock3d",
+      "input": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ],
+      "output": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "name": "blocks.6",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ],
+      "output": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "name": "blocks.7",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ],
+      "output": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "name": "middle_block.0",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ],
+      "output": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "name": "middle_block.1",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ],
+      "output": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "name": "out_layer",
+      "block": "Sequential",
+      "input": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ],
+      "output": [
+        2,
+        16,
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "decoder": [
+    {
+      "name": "input_layer",
+      "block": "Conv3d",
+      "input": [
+        2,
+        8,
+        16,
+        16,
+        16
+      ],
+      "output": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "name": "middle_block.0",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ],
+      "output": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "name": "middle_block.1",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ],
+      "output": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "name": "blocks.0",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ],
+      "output": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "name": "blocks.1",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ],
+      "output": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "name": "blocks.2",
+      "block": "UpsampleBlock3d",
+      "input": [
+        2,
+        512,
+        16,
+        16,
+        16
+      ],
+      "output": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ]
+    },
+    {
+      "name": "blocks.3",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ],
+      "output": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ]
+    },
+    {
+      "name": "blocks.4",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ],
+      "output": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ]
+    },
+    {
+      "name": "blocks.5",
+      "block": "UpsampleBlock3d",
+      "input": [
+        2,
+        128,
+        32,
+        32,
+        32
+      ],
+      "output": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "blocks.6",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ],
+      "output": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "blocks.7",
+      "block": "ResBlock3d",
+      "input": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ],
+      "output": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ]
+    },
+    {
+      "name": "out_layer",
+      "block": "Sequential",
+      "input": [
+        2,
+        32,
+        64,
+        64,
+        64
+      ],
+      "output": [
+        2,
+        1,
+        64,
+        64,
+        64
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ss-occupancy"
+version = "0.1.0"
+description = "Standalone TRELLIS sparse structure VAE and image-conditioned flow"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.4", "numpy>=1.24", "Pillow>=10", "safetensors>=0.4", "tqdm>=4.66"]
+
+[project.optional-dependencies]
+image = ["torchvision>=0.19", "rembg>=2", "onnxruntime>=1.17"]
+web = ["Flask>=3,<4", "plotly>=5,<7"]
+test = ["pytest>=7"]
+
+[project.scripts]
+ss-train = "ss_module.train:main"
+ss-infer = "ss_module.infer:main"
+ss-prepare = "ss_module.prepare:main"
+ss-export = "ss_module.export_weights:main"
+
+[tool.setuptools]
+package-dir = {ss_module = "."}
+packages = [
+  "ss_module",
+  "ss_module.datasets",
+  "ss_module.models",
+  "ss_module.modules",
+  "ss_module.modules.attention",
+  "ss_module.modules.transformer",
+  "ss_module.pipelines",
+  "ss_module.pipelines.samplers",
+  "ss_module.trainers",
+  "ss_module.trainers.vae",
+  "ss_module.trainers.flow_matching",
+  "ss_module.utils",
+]

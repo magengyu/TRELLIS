@@ -1,0 +1,40 @@
+{
+  "stage": "flow",
+  "models": {
+    "denoiser": {
+      "name": "SparseStructureFlowModel",
+      "args": {
+        "resolution": 16,
+        "in_channels": 8,
+        "out_channels": 8,
+        "model_channels": 1024,
+        "cond_channels": 1024,
+        "num_blocks": 24,
+        "num_heads": 16,
+        "mlp_ratio": 4,
+        "patch_size": 1,
+        "pe_mode": "ape",
+        "qk_rms_norm": true,
+        "use_fp16": false,
+        "use_checkpoint": true
+      }
+    }
+  },
+  "resolution": 64,
+  "batch_size": 1,
+  "accumulation_steps": 1,
+  "max_steps": 100000,
+  "lr": 0.0001,
+  "weight_decay": 0.0,
+  "precision": "bf16",
+  "grad_clip": 1.0,
+  "ema_decay": 0.9999,
+  "save_every": 1000,
+  "log_every": 10,
+  "seed": 42,
+  "num_workers": 0,
+  "sigma_min": 1e-05,
+  "p_uncond": 0.1,
+  "t_mean": 1.0,
+  "t_std": 1.0
+}
