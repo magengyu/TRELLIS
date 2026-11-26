@@ -107,6 +107,7 @@ case $PLATFORM in
 esac
 
 if [ "$BASIC" = true ] ; then
+    sudo apt install -y libegl1
     pip install pillow imageio imageio-ffmpeg tqdm easydict opencv-python-headless scipy ninja rembg onnxruntime trimesh open3d xatlas pyvista pymeshfix igraph transformers
     pip install git+https://github.com/EasternJournalist/utils3d.git@9a4eb15e4021b67b12c460c7057d642626897ec8
 fi
@@ -245,6 +246,8 @@ fi
 if [ "$SPCONV" = true ] ; then
     # install spconv
     if [ "$PLATFORM" = "cuda" ] ; then
+        # Generic spconv/cumm wheels are CPU-only and can overwrite CUDA wheel files.
+        pip uninstall -y spconv spconv-cu118 spconv-cu120 cumm cumm-cu118 cumm-cu120
         case $CUDA_MAJOR_VERSION in
             11) pip install spconv-cu118 ;;
             12) pip install spconv-cu120 ;;

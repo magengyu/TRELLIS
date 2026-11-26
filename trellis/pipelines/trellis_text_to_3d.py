@@ -3,7 +3,6 @@ import torch
 import torch.nn as nn
 import numpy as np
 from transformers import CLIPTextModel, AutoTokenizer
-import open3d as o3d
 from .base import Pipeline
 from . import samplers
 from ..modules import sparse as sp
@@ -226,7 +225,7 @@ class TrellisTextTo3DPipeline(Pipeline):
         slat = self.sample_slat(cond, coords, slat_sampler_params)
         return self.decode_slat(slat, formats)
     
-    def voxelize(self, mesh: o3d.geometry.TriangleMesh) -> torch.Tensor:
+    def voxelize(self, mesh: 'open3d.geometry.TriangleMesh') -> torch.Tensor:
         """
         Voxelize a mesh.
 
@@ -235,6 +234,8 @@ class TrellisTextTo3DPipeline(Pipeline):
             sha256 (str): The SHA256 hash of the mesh.
             output_dir (str): The output directory.
         """
+        import open3d as o3d
+
         vertices = np.asarray(mesh.vertices)
         aabb = np.stack([vertices.min(0), vertices.max(0)])
         center = (aabb[0] + aabb[1]) / 2
@@ -249,7 +250,7 @@ class TrellisTextTo3DPipeline(Pipeline):
     @torch.no_grad()
     def run_variant(
         self,
-        mesh: o3d.geometry.TriangleMesh,
+        mesh: 'open3d.geometry.TriangleMesh',
         prompt: str,
         num_samples: int = 1,
         seed: int = 42,

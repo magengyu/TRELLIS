@@ -82,6 +82,7 @@ python app_text.py             # 文本生成的网页界面（需先安装 --de
 
 - **GPU 不支持 Flash Attention（如 V100）：**安装时去掉 `--flash-attn`，保留 `--xformers`，运行前执行 `export ATTN_BACKEND=xformers`。
 - **CUDA 扩展编译失败：**检查 `nvcc --version`、PyTorch 的 CUDA 版本和 `PATH`；可将安装命令拆成单个选项逐项排查。
+- **Open3D 报错 `libEGL.so.1: cannot open shared object file`：**安装系统运行库 `sudo apt install -y libegl1`，然后重新运行脚本。
 - **模型下载失败：**检查 Hugging Face 网络访问。主模型也可下载后保留目录结构，将 `from_pretrained("microsoft/TRELLIS-image-large")` 改为本地模型目录；辅助模型仍可能需要下载。
 
 更多安装说明和训练方法见 [README.md](README.md)。
